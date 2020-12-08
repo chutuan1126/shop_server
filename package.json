@@ -1,0 +1,20 @@
+{
+  "name": "shop_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/chutuan1126/shop_server.git",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --inspect app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
