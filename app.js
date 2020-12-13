@@ -16,7 +16,7 @@ const productRoute = require('./route/product.route');
 
 const app = express();
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 const hostname = 'localhost';
 
 mongoose.connect('mongodb+srv://myDB:Tuan261197@m0.nc9vh.gcp.mongodb.net/MyDB', {
