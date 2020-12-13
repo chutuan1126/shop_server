@@ -5,7 +5,7 @@
   "repository": "https://github.com/chutuan1126/shop_server.git",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --inspect app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
