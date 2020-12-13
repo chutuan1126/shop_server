@@ -2,17 +2,30 @@ const products = require('../models/product.model');
 const assert = require('assert');
 
 module.exports.getProducts = (req, res) => {
-    const { code, size } = req.body;
-    products.find({ sellerCategories: {$elemMatch: { id: { $in: code } }} }, (err, products) => {
-        assert.equal(null, err);
-        res.send(products);
-    }).limit(size);
+    const { code, size, pageNumber } = req.body;
+    products.countDocuments({ sellerCategories: { $elemMatch: { id: { $in: code } } } }, (err, count) => {
+        products.find({ sellerCategories: { $elemMatch: { id: { $in: code } } } })
+            .limit(size)
+            .skip(pageNumber ? (pageNumber - 1) * 20 : 0)
+            .exec((err, data) => {
+                if (err) res.send({
+                    code: -9999,
+                    error: err
+                });
+                else res.send({
+                    code: 9999,
+                    total: count,
+                    data: data
+                });
+            });
+    });
 };
 
-module.exports.product = (req, res) => {
-    product.find({}, (err, products) => {
+module.exports.getSingleProduct = (req, res) => {
+    const { id } = req.body;
+    products.findOne({ id: id }, (err, result) => {
         assert.equal(null, err);
-        res.send(products);
+        res.send(result);
     });
 };
 
